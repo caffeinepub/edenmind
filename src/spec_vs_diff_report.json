@@ -1,0 +1,95 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T18:33:14.760Z",
+  "summary": "Core frontend flow (form -> backend call -> results) and a botanical theme are partially implemented, and the app references the required logo/hero asset paths. However, the backend analyzer/output schema does not meet REQ-2 (insufficient categories, missing structured rationale/steps/care plan/confidence, and not safety-aware), REQ-1’s confidence indicator is missing, REQ-5’s generated image files are not evidenced as added under the required public assets path, and extra backend “history/search” features were added beyond the request.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Results include (at minimum): likely issue(s), confidence/likelihood indicator, treatment steps, and ongoing care checklist.",
+      "reason": "Backend `Diagnosis` type only returns `issue`, `treatment`, and `careRecommendations` and the UI shows the issue as a badge, but there is no confidence/likelihood field anywhere in the shown types/UI.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/App.tsx",
+        "frontend/src/components/DiagnosisResults.tsx"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Backend exposes a single public method that accepts structured input and returns a structured result (issues, rationale, treatment steps, care plan).",
+      "reason": "Backend defines multiple public methods (`submitPlantInfo`, `getDiagnosis`, `getAllDiagnoses`, `searchDiagnosesByIssue`). Also the return type `Diagnosis` is not the required structured shape (no issues array, no rationale field, no step list, no checklist).",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Analyzer handles at least these common problem categories: overwatering/root rot, underwatering, low light, sunburn, nutrient deficiency, pests (e.g., aphids/spider mites), fungal disease, and temperature stress.",
+      "reason": "The analyzer only maps a few keywords: wilting->overwatering, yellowing->nutrient deficiency, spots->fungal infection. No evidence of handling underwatering, low light, sunburn, pests, or temperature stress (and root rot specifically is not implemented).",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Returned guidance is safety-aware (e.g., avoids suggesting prohibited chemicals; includes general cautions like isolating pest-infected plants).",
+      "reason": "Treatment text includes \"Apply a suitable fungicide\" and there is no evidence of safety cautions (e.g., isolating pest-infected plants) in returned guidance.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Ongoing care is displayed as checklist-style items.",
+      "reason": "The results component parses care recommendations into `careItems`, but the truncated diff does not show the checklist-style rendering (e.g., checkbox UI / checkable list items). Cannot confirm it is implemented from the provided snippet.",
+      "evidence": [
+        "frontend/src/components/DiagnosisResults.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Generated images are placed under frontend/public/assets/generated and referenced directly by the frontend (logo and hero visible).",
+      "reason": "Frontend references `/assets/generated/edenmind-logo.dim_512x512.png` and `/assets/generated/edenmind-hero.dim_1600x600.png`, but the diff shows no added files under `frontend/public/assets/generated`, so inclusion of the required generated images is not evidenced.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend user-specific diagnosis storage and retrieval/search endpoints (`getDiagnosis`, `getAllDiagnoses`, `searchDiagnosesByIssue`) plus persistent-ish per-caller tracking.",
+      "reason": "BuildRequest did not ask for storing user histories/records (explicitly a non-goal) and asked for a single backend public method for analysis.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Internet Identity authentication/provider and actor recreation logic (useInternetIdentity/useActor).",
+      "reason": "Authentication was not requested as part of the EdenMind requirements (only constrained to not use third-party auth beyond II). Adding a full II login/context system is extra scope beyond the specified REQs.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/DiagnosisResults.tsx",
+    "frontend/src/components/PlantInfoForm.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/edenmindCopy.ts",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

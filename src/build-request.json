@@ -1,0 +1,126 @@
+{
+  "kind": "build_request",
+  "title": "EdenMind — Plant problem diagnosis and care plan generator",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create the EdenMind app core flow: collect plant information from the user (plant type/name, environment, watering habits, visible symptoms) and generate a clear diagnosis summary plus a cure/treatment plan and ongoing care instructions.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Cria um aplicativo de inteligência artificial que cria solução de cura para tua planta e diz como você deve cuidar o  nome é EdenMind a.a"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Frontend provides a form with fields for plant type/name, light exposure, watering frequency, and free-text symptoms/observations.",
+        "Submitting the form calls a backend method and shows results without a page reload.",
+        "Results include (at minimum): likely issue(s), confidence/likelihood indicator, treatment steps, and ongoing care checklist."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a deterministic, on-chain 'AI-like' plant health analyzer in Motoko that maps user-provided symptoms and care context to likely issues and produces structured recommendations.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Cria um aplicativo de inteligência artificial que cria solução de cura para tua planta e diz como você deve cuidar o  nome é EdenMind a.a"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a single public method that accepts a structured input (plant type/name, environment, watering, symptoms) and returns a structured result (issues, rationale, treatment steps, care plan).",
+        "Analyzer handles at least these common problem categories: overwatering/root rot, underwatering, low light, sunburn, nutrient deficiency, pests (e.g., aphids/spider mites), fungal disease, and temperature stress.",
+        "Returned guidance is safety-aware (e.g., avoids suggesting prohibited chemicals; includes general cautions like isolating pest-infected plants).",
+        "All Motoko logic remains in the single main actor file per platform constraints."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build the results UI to present the EdenMind output in a readable, actionable format with sections for: Diagnosis, Why this is likely, Treatment plan (step-by-step), and Ongoing care (do/don’t checklist).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "...diz como você deve cuidar..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Results page/section renders returned structured fields with clear headings and lists.",
+        "Treatment steps are displayed as an ordered list; ongoing care is displayed as checklist-style items.",
+        "UI includes a 'Start over' action to run a new analysis."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a coherent visual theme for EdenMind and apply it consistently across the app (typography, spacing, color palette, components). Use an earthy botanical style (greens, warm neutrals) and avoid blue/purple as primary colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "...nome é EdenMind..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "App uses a consistent botanical theme (e.g., green/earth palette, soft surfaces) across form and results.",
+        "Theme is applied via Tailwind styling and existing UI components without modifying immutable UI component source files.",
+        "All user-facing text in the UI is in English and uses the name “EdenMind”."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Generate and include basic static brand/hero imagery for EdenMind and render it from frontend static assets.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "nome é EdenMind"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images are placed under frontend/public/assets/generated and referenced directly by the frontend (no backend image routing).",
+        "At least a logo and a hero/banner image are visible in the app shell/home screen."
+      ]
+    }
+  ],
+  "constraints": [
+    "Use English for any user-facing text.",
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not modify files under frontend immutablePaths (compose existing UI components instead).",
+    "Do not integrate external LLM/AI APIs; the 'AI' behavior must be implemented within the app using deterministic logic."
+  ],
+  "nonGoals": [
+    "Plant photo upload and image-based diagnosis.",
+    "Real-time chat interface with an AI assistant.",
+    "Third-party authentication providers other than Internet Identity.",
+    "Storing long-term user histories/records unless explicitly requested later."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Botanical wordmark logo reading “EdenMind” with a minimal leaf/seedling motif, flat vector style, transparent background (edenmind-logo.dim_512x512.png)",
+      "Soft botanical hero/banner illustration with leaves/houseplant silhouette, warm neutral background, no text (edenmind-hero.dim_1600x600.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

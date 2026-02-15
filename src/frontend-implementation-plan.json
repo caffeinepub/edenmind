@@ -1,0 +1,115 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "EdenMind — Plant diagnosis & care plan (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement the core EdenMind UI flow: collect plant context + symptoms, submit to backend, and render returned diagnosis without page reload.",
+      "acceptanceCriteria": [
+        "Frontend provides a form with fields for plant type/name, light exposure, watering frequency, and free-text symptoms/observations.",
+        "Submitting the form calls a backend method and shows results without a page reload.",
+        "Results include (at minimum): likely issue(s), confidence/likelihood indicator, treatment steps, and ongoing care checklist."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the EdenMind single-page flow: app shell (branding + hero), plant info form (name/type/environment/watering/symptoms), submit action calling the backend submitPlantInfo method, and conditional rendering of results without a full page reload. Use shadcn-ui components (e.g., Card, Button, Input, Textarea, Badge) to structure the UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/usePlantDiagnosis.ts",
+          "operation": "create",
+          "description": "Add a React hook (non-JSX) that wraps the submit flow to backend submitPlantInfo, manages loading/error state, and normalizes user input (e.g., splitting free-text symptoms into an array) for the PlantInfo shape from frontend/src/backend.d.ts. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/lib/edenmindCopy.ts",
+          "operation": "create",
+          "description": "Add centralized English UI strings (labels, placeholders, helper text, error text) to ensure consistent wording and that the name “EdenMind” is used across the app. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Adjust/extend frontend TypeScript types as needed to reflect the structured diagnosis UI expected by the app (while remaining compatible with the existing backendInterface typing), so the UI can render issue(s), likelihood/confidence indicator, treatment steps, and ongoing care checklist. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build the results UI with clear sections (Diagnosis, Why likely, Treatment steps, Ongoing care checklist) and a Start over action.",
+      "acceptanceCriteria": [
+        "Results page/section renders returned structured fields with clear headings and lists.",
+        "Treatment steps are displayed as an ordered list; ongoing care is displayed as checklist-style items.",
+        "UI includes a 'Start over' action to run a new analysis."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/DiagnosisResults.tsx",
+          "operation": "create",
+          "description": "Create a dedicated results component that renders the structured output with headings for Diagnosis, Why this is likely, Treatment plan (ordered list), and Ongoing care (checklist-style items). Use shadcn-ui components (e.g., Card, Separator, Badge, Checkbox) for readable, actionable formatting; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire DiagnosisResults into the main flow: pass backend response, show loading/error states, and implement a “Start over” action that resets form + results state for a new analysis. Use shadcn-ui Button for the action; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Apply a consistent earthy botanical EdenMind theme (greens + warm neutrals), Tailwind-based, English-only UI text, and avoid blue/purple as primary colors.",
+      "acceptanceCriteria": [
+        "App uses a consistent botanical theme (e.g., green/earth palette, soft surfaces) across form and results.",
+        "Theme is applied via Tailwind styling and existing UI components without modifying immutable UI component source files.",
+        "All user-facing text in the UI is in English and uses the name “EdenMind”."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global Tailwind base layers and define CSS variables for the EdenMind botanical palette (greens and warm neutrals) so shadcn-ui theme tokens map to non-blue primary colors. Ensure global typography/spacing feels consistent. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Tune Tailwind theme extensions (if needed) to support the botanical palette and consistent surfaces/typography, while keeping shadcn-ui token-based colors as the mechanism (no edits to immutable component sources). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure document metadata (title and any visible shell text if present) matches “EdenMind” and remains English-only. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Apply the botanical theme consistently to app layout, form, and results using Tailwind utility classes and composed shadcn-ui components (no modifications to immutable UI component source files). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Include generated EdenMind logo and hero/banner images as frontend static assets and render them in the app shell/home screen.",
+      "acceptanceCriteria": [
+        "Generated images are placed under frontend/public/assets/generated and referenced directly by the frontend (no backend image routing).",
+        "At least a logo and a hero/banner image are visible in the app shell/home screen."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/edenmind-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated EdenMind logo image asset at the exact required path so it can be referenced directly by the frontend UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/edenmind-hero.dim_1600x600.png",
+          "operation": "create",
+          "description": "Add the generated EdenMind hero/banner image asset at the exact required path so it can be referenced directly by the frontend UI."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Render the static assets frontend/public/assets/generated/edenmind-logo.dim_512x512.png (logo) and frontend/public/assets/generated/edenmind-hero.dim_1600x600.png (hero/banner) in the app shell/home screen area (above the form). Use Tailwind for responsive sizing and shadcn-ui layout primitives where appropriate; verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

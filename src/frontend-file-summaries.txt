@@ -1,0 +1,9 @@
+{
+  "frontend/src/App.tsx": "Main application component that orchestrates the EdenMind plant diagnosis flow with hero section, form/results conditional rendering, header with logo, and footer with attribution.",
+  "frontend/src/components/PlantInfoForm.tsx": "Form component that collects plant information (name, type, environment, watering habits, symptoms) with validation and submits to backend via React Query mutation.",
+  "frontend/src/components/DiagnosisResults.tsx": "Results display component that presents the diagnosis with structured sections for issue identification, treatment plan (ordered steps), and ongoing care checklist with visual indicators.",
+  "frontend/src/hooks/useQueries.ts": "React Query hook that wraps the backend submitPlantInfo mutation for plant diagnosis submission.",
+  "frontend/src/lib/edenmindCopy.ts": "Centralized English UI copy/strings for consistent labeling, placeholders, helper text, and messages throughout the EdenMind application.",
+  "frontend/src/index.css": "Global styles with botanical OKLCH color system (emerald greens and warm neutrals) for both light and dark modes, plus custom animations.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with botanical color palette, custom border radius, and typography settings for the EdenMind theme."
+}

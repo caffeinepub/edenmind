@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build EdenMind, an AI app that identifies plant health problems and provides cure/treatment solutions plus ongoing care instructions based on user-provided plant information.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Botanical wordmark logo reading “EdenMind” with a minimal leaf/seedling motif, flat vector style, transparent background (edenmind-logo.dim_512x512.png)\n- Soft botanical hero/banner illustration with leaves/houseplant silhouette, warm neutral background, no text (edenmind-hero.dim_1600x600.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-edenmind-app-core-flow-collect-plant-information-from-the-user-plant-type-name-environment-watering-habits-visible-symptoms-and-generate-a-clear-diagnosis-summary-plus-a-cure-treatment-plan-and-ongoing-care-instructions",
+      "title": "Create the EdenMind app core flow: collect plant information from the user (plant type/name, environment, watering habits, visible symptoms) and generate a clear diagnosis summary plus a cure/treatment plan and ongoing care instructions.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-results-ui-to-present-the-edenmind-output-in-a-readable-actionable-format-with-sections-for-diagnosis-why-this-is-likely-treatment-plan-step-by-step-and-ongoing-care-do-don-t-checklist",
+      "title": "Build the results UI to present the EdenMind output in a readable, actionable format with sections for: Diagnosis, Why this is likely, Treatment plan (step-by-step), and Ongoing care (do/don’t checklist).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-coherent-visual-theme-for-edenmind-and-apply-it-consistently-across-the-app-typography-spacing-color-palette-components-use-an-earthy-botanical-style-greens-warm-neutrals-and-avoid-blue-purple-as-primary-colors",
+      "title": "Add a coherent visual theme for EdenMind and apply it consistently across the app (typography, spacing, color palette, components). Use an earthy botanical style (greens, warm neutrals) and avoid blue/purple as primary colors.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-basic-static-brand-hero-imagery-for-edenmind-and-render-it-from-frontend-static-assets",
+      "title": "Generate and include basic static brand/hero imagery for EdenMind and render it from frontend static assets.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create EdenMind AI app that takes plant info from user, diagnoses issues, and returns cure/treatment solutions and care instructions.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement a deterministic, on-chain 'AI-like' plant health analyzer in Motoko that maps user-provided symptoms and care context to likely issues and produces structured recommendations.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "EdenMind",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

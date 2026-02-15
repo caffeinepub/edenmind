@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        
+        /* Botanical green palette for light mode */
+        --background: 0.98 0.01 145;
+        --foreground: 0.25 0.04 145;
+        --card: 1 0 0;
+        --card-foreground: 0.25 0.04 145;
+        --popover: 1 0 0;
+        --popover-foreground: 0.25 0.04 145;
+        
+        /* Primary: Rich emerald green */
+        --primary: 0.55 0.14 160;
+        --primary-foreground: 0.98 0.01 145;
+        
+        /* Secondary: Soft sage */
+        --secondary: 0.92 0.02 145;
+        --secondary-foreground: 0.35 0.05 145;
+        
+        /* Muted: Light moss */
+        --muted: 0.94 0.015 145;
+        --muted-foreground: 0.50 0.06 145;
+        
+        /* Accent: Fresh leaf green */
+        --accent: 0.88 0.03 145;
+        --accent-foreground: 0.30 0.05 145;
+        
+        /* Destructive: Warm amber for warnings */
+        --destructive: 0.60 0.18 45;
+        --destructive-foreground: 0.98 0.01 145;
+        
+        /* Borders and inputs */
+        --border: 0.88 0.02 145;
+        --input: 0.88 0.02 145;
+        --ring: 0.55 0.14 160;
+        
+        /* Chart colors - botanical palette */
+        --chart-1: 0.55 0.14 160;
+        --chart-2: 0.65 0.12 140;
+        --chart-3: 0.70 0.10 180;
+        --chart-4: 0.60 0.15 120;
+        --chart-5: 0.75 0.08 155;
+    }
+
+    .dark {
+        /* Dark mode: Deep forest tones */
+        --background: 0.18 0.03 145;
+        --foreground: 0.95 0.01 145;
+        --card: 0.22 0.03 145;
+        --card-foreground: 0.95 0.01 145;
+        --popover: 0.20 0.03 145;
+        --popover-foreground: 0.95 0.01 145;
+        
+        /* Primary: Bright emerald for dark mode */
+        --primary: 0.75 0.12 160;
+        --primary-foreground: 0.20 0.03 145;
+        
+        /* Secondary: Dark sage */
+        --secondary: 0.28 0.04 145;
+        --secondary-foreground: 0.95 0.01 145;
+        
+        /* Muted: Deep moss */
+        --muted: 0.30 0.04 145;
+        --muted-foreground: 0.65 0.08 145;
+        
+        /* Accent: Vibrant leaf */
+        --accent: 0.40 0.06 145;
+        --accent-foreground: 0.95 0.01 145;
+        
+        /* Destructive: Bright amber */
+        --destructive: 0.65 0.16 45;
+        --destructive-foreground: 0.20 0.03 145;
+        
+        /* Borders and inputs */
+        --border: 0.30 0.04 145;
+        --input: 0.32 0.04 145;
+        --ring: 0.60 0.10 160;
+        
+        /* Chart colors - vibrant for dark */
+        --chart-1: 0.70 0.14 160;
+        --chart-2: 0.75 0.12 140;
+        --chart-3: 0.80 0.10 180;
+        --chart-4: 0.65 0.15 120;
+        --chart-5: 0.78 0.08 155;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+}
+
+@layer utilities {
+    .animate-in {
+        animation: fadeIn 0.5s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
